@@ -1,0 +1,36 @@
+/* ==========================================================
+   BASE
+   Reset mínimo y tipografía general del sitio.
+   Todos los tamaños de esta hoja están ~20% más grandes que
+   la primera versión del portafolio (pedido del usuario).
+   ========================================================== */
+html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
+* { box-sizing: inherit; }
+
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: 22px; 
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+button { font-family: inherit; }
+
+/* Foco visible por teclado, compartido por varios componentes
+   (botón de tema, nav, links, botón de copiar) */
+#theme-toggle:focus-visible,
+.nav-btn:focus-visible,
+.link:focus-visible,
+.copy-btn:focus-visible {
+  outline: 2px solid var(--graphite);
+  outline-offset: 2px;
+}

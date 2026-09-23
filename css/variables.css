@@ -1,0 +1,41 @@
+/* ==========================================================
+   VARIABLES DE TEMA
+   Colores en escala de grises. Se redefinen en modo oscuro
+   (automático por prefers-color-scheme, y manual con
+   [data-theme="dark"] / [data-theme="light"] cuando el
+   usuario toca el botón de la esquina superior derecha).
+   ========================================================== */
+:root {
+  box-sizing: border-box;
+  --paper: #fdfdfb;      /* fondo, modo claro */
+  --ink: #141412;        /* texto principal, modo claro */
+  --graphite: #79766f;   /* texto secundario / gris medio */
+  --line: #dcdad3;       /* líneas finas (bordes, separadores) */
+  --hover: #c9c6bd;      /* gris de hover */
+  --panel: #f4f3ef;      /* fondo sutil del botón activo */
+  --radius: 2px;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Modo oscuro automático (según el sistema operativo) */
+:root:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --paper: #131311;
+    --ink: #f2f1ec;
+    --graphite: #96938a;
+    --line: #333129;
+    --hover: #2f2d26;
+    --panel: #1c1b17;
+  }
+}
+
+/* Modo oscuro forzado por el botón de tema */
+:root[data-theme="dark"] {
+  --paper: #131311;
+  --ink: #f2f1ec;
+  --graphite: #96938a;
+  --line: #333129;
+  --hover: #2f2d26;
+  --panel: #1c1b17;
+}

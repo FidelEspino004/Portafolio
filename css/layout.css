@@ -1,0 +1,78 @@
+/* ==========================================================
+   BARRA SUPERIOR (logo + botón de tema)
+   ========================================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.mark {
+  font-size: 38px;      
+  line-height: 1;
+  letter-spacing: .5px;
+  color: var(--ink);
+}
+
+/* ==========================================================
+   GRID PRINCIPAL: NAV / MAIN
+   ========================================================== */
+.layout {
+  display: grid;
+  grid-template-columns: 25% 75%;  /* Nav 25% / Main 75% */
+  align-items: start;
+  min-height: calc(100% - 70px);
+}
+
+/* ----------------------------------------------------------
+   NAV (columna izquierda del grid)
+   No tiene borde derecho fijo separándolo del Main: ese
+   borde solo aparece en el botón seleccionado (components.css,
+   regla .nav-btn.active).
+   ---------------------------------------------------------- */
+.sidebar {
+  padding: 28px 0;
+  position: sticky;
+  top: 70px;
+  align-self: start;
+}
+
+/* ----------------------------------------------------------
+   MAIN (columna derecha del grid)
+   Más padding a la izquierda para separarlo visualmente del
+   Nav, ya que no hay una línea divisoria fija entre ambos.
+   ---------------------------------------------------------- */
+.content {
+  min-width: 0;
+  padding: 56px 40px 80px 88px; /* top | right | bottom | left (left más grande a propósito) */
+}
+
+/* ==========================================================
+   RESPONSIVE (pantallas angostas)
+   El grid de 2 columnas pasa a 1 sola columna: el Nav se
+   convierte en una barra horizontal arriba del contenido.
+   ========================================================== */
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;   /* una sola columna */
+    grid-auto-rows: auto;
+  }
+  .sidebar {
+    position: sticky;
+    top: 69px;
+    border-bottom: 1px solid var(--line);
+    padding: 6px 4px;
+    display: flex;
+    overflow-x: auto;
+    background: var(--paper);
+  }
+  .content { padding: 34px 22px 60px; }
+  .mark { font-size: 30px; } /* "Fidel & Serafín" es largo, achicamos en mobile */
+}
