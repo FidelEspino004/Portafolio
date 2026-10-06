@@ -1,0 +1,74 @@
+/* ==========================================================
+   HEADER DE ESTA PÁGINA: agrega el buscador junto al logo.
+   Solo lo carga proyectos.html, así que no afecta el header
+   de la página principal.
+   ========================================================== */
+.topbar { flex-wrap: wrap; row-gap: 10px; } /* por si el buscador no entra en una sola fila */
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.search-input {
+  flex: 1 1 220px;
+  max-width: 320px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+}
+.search-input::placeholder { color: var(--graphite); }
+.search-input:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px var(--hover);
+}
+
+/* ==========================================================
+   POSTS DE PROYECTOS (listado tipo blog, uno debajo del otro)
+   ========================================================== */
+.page-intro { color: var(--graphite); font-style: italic; margin: 0 0 32px; font-size: 20px; }
+
+.project-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 760px;
+}
+
+.project-post {
+  scroll-margin-top: 90px; /* para que el link desde Trabajos no quede tapado por la topbar sticky */
+}
+
+.post-shot {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  background-color: var(--panel);
+  background-image: repeating-linear-gradient(
+    45deg, var(--line), var(--line) 2px, transparent 2px, transparent 12px
+  );
+  border: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+
+.post-category {
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--graphite);
+  margin-bottom: 8px;
+}
+
+.post-title { font-size: 34px; font-weight: 500; margin: 0 0 14px; }
+
+.post-body p { font-size: 19px; line-height: 1.7; margin: 0 0 16px; color: var(--ink); }
+
+.no-results { color: var(--graphite); font-style: italic; margin-top: 12px; }

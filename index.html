@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fidel & Serafín — Portafolio</title>
+<title>Provincianos — Portafolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +15,19 @@
 <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-  <div class="topbar">
-    <span class="mark">Fidel &amp; Serafín</span>
+  <header class="topbar">
+    <span class="mark">Provincianos</span>
     <button id="theme-toggle" aria-label="Cambiar tema">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
     </button>
-  </div>
+  </header>
 
   <div class="layout">
     <nav class="sidebar" id="sidebar" aria-label="Secciones">
       <button class="nav-btn active" data-target="presentacion">Presentación</button>
       <button class="nav-btn" data-target="trabajos">Trabajos</button>
-      <button class="nav-btn" data-target="redes">Redes</button>
+      <button class="nav-btn" data-target="nosotros">Nosotros</button>
       <button class="nav-btn" data-target="contacto">Contacto</button>
     </nav>
 
@@ -40,13 +40,114 @@
         <p class="skills">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga vitae quo porro, eligendi cum alias earum debitis, necessitatibus provident harum, eos magnam. Possimus, tempora. Fugit at nulla architecto ex accusantium.</p>
       </section>
 
-      <section id="trabajos" class="panel">
+      <section id="trabajos" class="panel wide">
+        <h2>Trabajos</h2>
+
+        <div class="projects-grid">
+          <!-- Cada card es un link completo. Para poner la captura real,
+              reemplazar el div.shot vacío por: <img src="assets/images/proyecto-1.png" alt=""> -->
+          <a class="project-card" href="/html/proyectos.html">
+            <div class="shot" aria-hidden="true"></div>
+            <div class="body">
+              <h3 class="title">Proyecto Uno</h3>
+              <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero, sit amet cursus nisl.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="#">
+            <div class="shot" aria-hidden="true"></div>
+            <div class="body">
+              <h3 class="title">Proyecto Dos</h3>
+              <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus ante dapibus diam sed nisi nulla quis.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="#">
+            <div class="shot" aria-hidden="true"></div>
+            <div class="body">
+              <h3 class="title">Proyecto Tres</h3>
+              <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi.</p>
+            </div>
+          </a>
+        </div>
       </section>
 
-      <section id="redes" class="panel">
+      <section id="nosotros" class="panel wide">
+        <h2>Nosotros</h2>
+
+        <div class="social-cards">
+          <!-- Para poner la foto real, reemplazar el contenido del div.avatar
+              por: <img src="assets/images/fidel.jpg" alt="Foto de Fidel"> -->
+          <article class="social-card">
+            <div class="avatar" aria-hidden="true">F</div>
+            <h3>Fidel Espino</h3>
+
+            <div class="education">
+              <h4>Educación</h4>
+              <p>Tecnicatura Universitaria en Programación - UTN sede Avellaneda</p>
+            </div>
+
+            <div class="skills-block">
+              <h4>Habilidades</h4>
+              <div class="skills-list">
+                <img class="skill-icon" src="assets/icons/JavaScript_icon.png" alt="JavaScript">
+                <img class="skill-icon" src="assets/icons/html5_icon.png" alt="HTML5">
+                <img class="skill-icon" src="assets/icons/css3_icon.png" alt="CSS3">
+                <img class="skill-icon" src="assets/icons/Bootstrap_icon.png" alt="Bootstrap">
+                <img class="skill-icon" src="assets/icons/Postman_icon.png" alt="Postman">
+              </div>
+            </div>
+
+            <div class="social-links">
+              <h4>Redes</h4>
+              <a class="social-link" target="_blank" href="https://github.com/FidelEspino004">
+                <img class="icon" src="assets/icons/github-logo-octocat-developer-software-platform-icon-free-vector.webp" alt="" aria-hidden="true">
+                GitHub
+              </a>
+              <a class="social-link" target="_blank" href="https://www.linkedin.com/in/fidel-espino-39555b26b/">
+                <img class="icon" src="assets/icons/linkedin-logo-linkedin-icon-transparent-free-png.webp" alt="" aria-hidden="true">
+                LinkedIn
+              </a>
+              <a class="social-link" target="_blank" href="https://www.instagram.com/fidelespino_/">
+                <img class="icon" src="assets/icons/instagram-logo-instagram-icon-transparent-free-png.webp" alt="" aria-hidden="true">
+                Instagram
+              </a>
+            </div>
+          </article>
+
+          <article class="social-card">
+            <div class="avatar" aria-hidden="true">S</div>
+            <h3>Serafín</h3>
+            <div class="social-links">
+              <a class="social-link" href="#"><span class="icon">GH</span>GitHub</a>
+              <a class="social-link" href="#"><span class="icon">in</span>LinkedIn</a>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section id="contacto" class="panel">
+        <h2>Hablemos</h2>
+        <p>Si tenés un proyecto en mente, una idea a medio armar o simplemente querés saludar, escribinos. Respondemos rápido.</p>
+
+        <form id="contact-form" class="contact-form">
+          <label>Nombre completo
+            <input type="text" name="nombre" autocomplete="name" required>
+          </label>
+          <label>Email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>Mensaje
+            <textarea name="mensaje" rows="5" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </form>
+
+        <p>O escribinos directamente a <a class="link" href="mailto:hola@fidelserafin.dev">hola@fidelserafin.dev</a></p>
+        <div class="contact-alt">
+          <button class="copy-btn" id="copy-email">Copiar correo</button>
+          <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=hola@fidelserafin.dev&su=Contacto%20desde%20el%20portfolio" target="_blank" rel="noopener noreferrer">Escribir por Gmail</a>
+        </div>
       </section>
 
     </main>

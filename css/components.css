@@ -75,6 +75,9 @@
    ========================================================== */
 .panel { display: none; max-width: 620px; }
 .panel.active { display: block; animation: fade .35s ease; }
+/* Presentación y Contacto son texto de lectura. Trabajos y Redes ahora son grillas de cards y
+   necesitan más aire horizontal. */
+.panel.wide { max-width: 900px; }
 @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
 /* ==========================================================
@@ -91,24 +94,164 @@ p { margin: 0 0 18px; }
 }
 
 /* ==========================================================
-   SECCIÓN "TRABAJOS"
+   SECCIÓN "TRABAJOS" — grilla de cards de proyecto
+   Cada card es un <a> completo (toda la card es clickeable).
+   Estructura interna: .shot (captura, ~20% del alto de la
+   card) + .body (título y minibiografía, el 80% restante).
    ========================================================== */
-.project { padding: 22px 0; border-top: 1px solid var(--line); }
-.project:last-child { border-bottom: 1px solid var(--line); }
-.project h3 { font-size: 28px; font-weight: 600; margin: 0 0 6px; }      
-.project .tags { color: var(--graphite); font-style: italic; font-size: 19px; margin: 0 0 10px; } 
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 26px;
+  margin-top: 8px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 380px;                 
+  border: 1px solid var(--line);
+  background: var(--paper);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color .2s ease, background .2s ease;
+}
+.project-card:hover { border-color: var(--ink); background: var(--panel); }
+
+/* Captura de pantalla: ocupa ~20% del alto de la card.
+   Placeholder con trama diagonal hasta que se reemplace por
+   una imagen real (ver comentario en el HTML de cada card). */
+.project-card .shot {
+  flex: 0 0 35%;
+  background-color: var(--panel);
+  background-image: repeating-linear-gradient(
+    45deg, var(--line), var(--line) 2px, transparent 2px, transparent 12px
+  );
+  border-bottom: 1px solid var(--line);
+}
+
+/* Cuerpo de la card: título + minibiografía, el 80% restante */
+.project-card .body {
+  flex: 1 1 65%;
+  min-height: 0;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.project-card .title { font-size: 24px; font-weight: 600; margin: 0 0 8px; }
+.project-card .bio {
+  font-size: 18px;
+  color: var(--graphite);
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;   /* corta el Lorem si no entra, para no romper el 20/80 */
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
 
 .link { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .link:hover { text-decoration-color: var(--ink); }
 
 /* ==========================================================
-   SECCIÓN "REDES"
+   SECCIÓN "Nosotros" — una card de perfil por persona
+   Estructura interna: .avatar (foto/iniciales) + nombre +
+   .social-links (un botón por red, con icono + etiqueta).
    ========================================================== */
-.social { padding: 18px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
-.social:last-child { border-bottom: 1px solid var(--line); }
-.social .platform { font-size: 25px; }   /* antes 21px */
-.social .handle { color: var(--graphite); }
+.social-cards {
+  /* CÓMO JUGAR CON LA POSICIÓN:
+     - "justify-content" acá controla si el par de cards se pega a la
+       izquierda/derecha o se centra, pero solo se nota si las columnas
+       NO estiran para llenar el ancho. Con "1fr" siempre estiran.
+       Para poder moverlas, cambiá "minmax(276px, 1fr)" por un ancho
+       fijo, ej: grid-template-columns: repeat(2, 300px); y ahí sí
+       "justify-content: center | start | end | space-between" mueve
+       el bloque completo.
+     - Para mover UNA card en particular (ej. escalonarlas), usá
+       margin-top / transform en .social-card:nth-child(2). */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
+  gap: 31px;
+  margin-top: 8px;
+  max-width: 744px;   /* antes 620px (+20%) */
+}
 
+.social-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 17px;          /* antes 14px */
+  padding: 41px 29px; /* antes 34px 24px */
+  border: 1px solid var(--line);
+}
+
+.avatar {
+  width: 116px;   /* antes 96px (+20%) */
+  height: 116px;  /* antes 96px (+20%) */
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Mrs Saint Delafield", cursive;
+  font-size: 53px;  /* antes 44px (+20%) */
+  color: var(--ink);
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.social-card h3 { margin: 0; font-size: 31px; font-weight: 500; } /* antes 26px */
+
+.social-links { display: flex; flex-direction: column; gap: 12px; width: 100%; } /* antes 10px */
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;          /* antes 12px */
+  padding: 12px 19px; /* antes 10px 16px */
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 22px;    /* antes 18px (+20%) */
+  transition: background .2s ease, border-color .2s ease;
+}
+.social-link:hover { background: var(--hover); border-color: var(--ink); }
+.social-link .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  object-fit: contain;  /* el logo entra completo, sin recortarse ni deformarse */
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+/* Educación, dentro de cada card de Nosotros */
+.social-card .education p { margin: 0; font-size: 17px; color: var(--ink); }
+
+/* Fila de íconos de habilidades. OJO: se llama "skills-block" /
+   "skills-list" (no "skills" a secas) para no chocar con la clase
+   .skills que ya usa el párrafo de Presentación. */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.skill-icon { width: 34px; height: 34px; object-fit: contain; }
+
+/* Subtítulos dentro de la card (Educación / Habilidades / Redes) */
+.social-card h4 {
+  margin: 18px 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--graphite);
+}
 /* ==========================================================
    SECCIÓN "CONTACTO"
    ========================================================== */
@@ -122,5 +265,48 @@ p { margin: 0 0 18px; }
   cursor: pointer;
   border-radius: var(--radius);
 }
-.copy-btn:hover { background: var(--hover); }
-.copy-btn[data-copied="true"] { background: var(--ink); color: var(--paper); }
+/* Botón genérico (outline) y su variante "primary" (relleno),
+   usados por el formulario y el botón de Gmail. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn:hover { background: var(--hover); }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--graphite); border-color: var(--graphite); }
+
+/* Formulario de contacto */
+.contact-form { display: flex; flex-direction: column; gap: 18px; margin: 26px 0; max-width: 480px; }
+.contact-form label { display: flex; flex-direction: column; gap: 6px; font-size: 16px; color: var(--graphite); }
+.contact-form input,
+.contact-form textarea {
+  font-family: inherit;
+  font-size: 18px;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px var(--hover);
+}
+.contact-form .btn { align-self: flex-start; }
+
+/* Fila con las formas alternativas de escribirnos (copiar correo / Gmail) */
+.contact-alt { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }

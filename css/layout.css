@@ -12,6 +12,7 @@
   padding-top: calc(14px + env(safe-area-inset-top, 0px));
   border-bottom: 1px solid var(--line);
   background: var(--paper);
+  height: 100px;
 }
 
 .mark {
@@ -74,5 +75,5 @@
     background: var(--paper);
   }
   .content { padding: 34px 22px 60px; }
-  .mark { font-size: 30px; } /* "Fidel & Serafín" es largo, achicamos en mobile */
+  .mark { font-size: 30px; } 
 }
