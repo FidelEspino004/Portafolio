@@ -17,24 +17,24 @@
   flex: 1 1 220px;
   max-width: 320px;
   padding: 8px 16px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--negro-2);
   border-radius: 999px;
   background: transparent;
-  color: var(--ink);
+  color: var(--crema);
   font-family: inherit;
   font-size: 16px;
 }
-.search-input::placeholder { color: var(--graphite); }
+.search-input::placeholder { color: var(--rojo-variante); }
 .search-input:focus {
   outline: none;
-  border-color: var(--ink);
-  box-shadow: 0 0 0 3px var(--hover);
+  border-color: var(--crema);
+  box-shadow: 0 0 0 3px var(--negro-3);
 }
 
 /* ==========================================================
    POSTS DE PROYECTOS (listado tipo blog, uno debajo del otro)
    ========================================================== */
-.page-intro { color: var(--graphite); font-style: italic; margin: 0 0 32px; font-size: 20px; }
+.page-intro { color: var(--rojo-variante); font-style: italic; margin: 0 0 32px; font-size: 20px; }
 
 .project-posts {
   display: flex;
@@ -50,11 +50,14 @@
 .post-shot {
   width: 100%;
   aspect-ratio: 16 / 7;
-  background-color: var(--panel);
+  background-color: var(--negro-1);
   background-image: repeating-linear-gradient(
-    45deg, var(--line), var(--line) 2px, transparent 2px, transparent 12px
+    45deg,
+    var(--negro-2),
+    var(--negro-2) 2px,
+    transparent 2px, transparent 12px
   );
-  border: 1px solid var(--line);
+  border: 1px solid var(--negro-2);
   margin-bottom: 20px;
 }
 
@@ -63,12 +66,12 @@
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: .08em;
-  color: var(--graphite);
+  color: var(--rojo-variante);
   margin-bottom: 8px;
 }
 
 .post-title { font-size: 34px; font-weight: 500; margin: 0 0 14px; }
 
-.post-body p { font-size: 19px; line-height: 1.7; margin: 0 0 16px; color: var(--ink); }
+.post-body p { font-size: 19px; line-height: 1.7; margin: 0 0 16px; color: var(--crema); }
 
-.no-results { color: var(--graphite); font-style: italic; margin-top: 12px; }
+.no-results { color: var(--rojo-variante); font-style: italic; margin-top: 12px; }

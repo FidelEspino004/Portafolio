@@ -1,4 +1,45 @@
 /* ==========================================================
+   TIPOGRAFÍA ALTERNATIVA (comentada por ahora)
+   Para probarla: descomentá este @import (o el <link> comentado
+   en el <head> de los HTML, con uno de los dos alcanza) y la
+   línea "font-family" comentada en el body, más abajo.
+   ========================================================== */
+/*
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap');
+*/
+
+/* ==========================================================
+   PALETA Y VARIABLES GENERALES
+   Los colores de la marca están acá, y cada elemento usa el
+   que quiera directamente (ej: color: var(--rojo-variante)).
+   Para cambiar el color de un elemento, editá su propio bloque.
+   ========================================================== */
+:root {
+  --rojo: #b42743;
+  --rojo-variante: #dc2a16;
+  --azul: #1a877f;
+  --cian: #3e6791;
+  --mostaza: #b79525;
+  --crema: #f4e7c5;
+  --negro: #171717;
+  --verde: #3f6845;
+  --verde-oscuro: #243B27;
+  --marron: #795548;
+  --marron-oscuro: #6B4F3A;
+
+  /* Tonos de crema sobre negro (mayor número = más contraste con el fondo) */
+  --negro-1: color-mix(in srgb, var(--crema) 6%, var(--negro));
+  --negro-2: color-mix(in srgb, var(--crema) 15%, var(--negro));
+  --negro-3: color-mix(in srgb, var(--crema) 18%, var(--negro));
+
+  --radius: 2px;
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ==========================================================
    BASE
    Reset mínimo y tipografía general del sitio.
    Todos los tamaños de esta hoja están ~20% más grandes que
@@ -10,9 +51,11 @@ html { scroll-padding-top: env(safe-area-inset-top, 0px); height: 100%; }
 body {
   height: 100%;
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--negro);
+  color: var(--crema);
   font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  /* font-family: "Michroma", sans-serif; */
+  /* Press Start 2P (estilo pixel) queda mejor solo en títulos: font-family: "Press Start 2P", cursive; */
   font-size: 22px; 
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -26,13 +69,352 @@ body {
 button { font-family: inherit; }
 
 /* Foco visible por teclado, compartido por varios componentes
-   (botón de tema, nav, links, botón de copiar) */
-#theme-toggle:focus-visible,
+   (nav, links, botón de copiar) */
 .nav-btn:focus-visible,
 .link:focus-visible,
 .copy-btn:focus-visible,
 .project-card:focus-visible,
 .social-link:focus-visible {
-  outline: 2px solid var(--graphite);
+  outline: 2px solid var(--mostaza);
   outline-offset: 2px;
 }
+
+/* ==========================================================
+   BOTONES DE NAVEGACIÓN
+   ========================================================== */
+.nav-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 26px;                  /* padding base de cualquier botón */
+  border: none;
+  border-right: 5px solid transparent; /* reservado: se activa solo si está seleccionado */
+  background: transparent;
+  color: var(--crema);
+  font-size: 23px;      /* antes 19px (+20%) */
+  letter-spacing: .3px;
+  cursor: pointer;
+  transition: padding .2s ease, background .2s ease, border-color .2s ease;
+}
+.nav-btn:hover { background: var(--negro-3); color: var(--crema); }
+
+/* Botón de la sección seleccionada:
+   - el borde derecho aparece y es más grueso (5px) que el
+     borde que antes tenía todo el Nav (1px);
+   - crece en padding-top / padding-bottom, por eso se ve más
+     "expandido" arriba y abajo que los demás botones. */
+.nav-btn.active {
+  color: var(--crema);
+  background: var(--marron-oscuro);
+  border-right: 5px solid var(--mostaza);
+  padding-top: 22px;     
+  padding-bottom: 22px;  
+}
+
+/* En mobile (barra horizontal) el indicador pasa a borde
+   inferior, tiene más sentido en una fila horizontal. */
+@media (max-width: 860px) {
+  .nav-btn {
+    flex: 1 0 auto;       /* los 4 botones se reparten el ancho de la barra */
+    width: auto;
+    white-space: nowrap;
+    text-align: center;
+    border-right: none;
+    border-bottom: 3px solid transparent; /* antes 2px, ahora más grueso */
+    padding: 10px 6px;
+    font-size: 18px;      /* más chico para que entren los 4 sin scroll horizontal */
+  }
+  .nav-btn.active {
+    border-right: none;
+    border-bottom: 3px solid var(--mostaza);
+    background: transparent;
+    padding-top: 10px;    /* en mobile no se expande: no hay vecinos verticales */
+    padding-bottom: 10px;
+  }
+}
+
+/* ==========================================================
+   PANELES DE CONTENIDO (una sección visible a la vez)
+   ========================================================== */
+.panel { display: none; max-width: 620px; }
+.panel.active { display: block; animation: fade .35s ease; }
+/* Presentación y Contacto son texto de lectura. Trabajos y Redes ahora son grillas de cards y
+   necesitan más aire horizontal. */
+.panel.wide { max-width: 900px; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* ==========================================================
+   TIPOGRAFÍA DE CONTENIDO
+   ========================================================== */
+h1 {
+  font-size: 53px;
+  font-weight: 500;
+  margin: 0 0 4px; 
+  color: var(--crema);
+}     
+
+.role { 
+  color: var(--mostaza);
+  font-style: italic;
+  margin: 0 0 28px;
+  font-size: 24px; 
+} 
+h2 {
+  font-size: 36px;
+  font-weight: 500;
+  margin: 0 0 22px;
+  color: var(--mostaza);
+}   
+ 
+p { margin: 0 0 18px; }
+.skills { color: var(--crema); }
+
+@media (max-width: 860px) {
+  h1 { font-size: 41px; }  
+}
+
+/* ==========================================================
+   SECCIÓN "TRABAJOS" — grilla de cards de proyecto
+   Cada card es un <a> completo (toda la card es clickeable).
+   Estructura interna: .shot (captura, ~20% del alto de la
+   card) + .body (título y minibiografía, el 80% restante).
+   ========================================================== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 26px;
+  margin-top: 8px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 440px;             
+  border: 1px solid var(--marron);
+  background: var(--marron-oscuro);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color .2s ease, background .2s ease;
+}
+.project-card:hover { border-color: var(--crema); background: var(--marron); }
+
+/* Captura de pantalla: ocupa ~20% del alto de la card.
+   Placeholder con trama diagonal hasta que se reemplace por
+   una imagen real (ver comentario en el HTML de cada card). */
+.project-card .shot {
+  flex: 0 0 35%;
+  background-color: var(--marron);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--marron-oscuro),
+    var(--marron-oscuro) 2px,
+    transparent 2px, transparent 12px
+  );
+  border-bottom: 1px solid var(--marron-oscuro);
+}
+
+/* Cuerpo de la card: título + minibiografía, el 80% restante */
+.project-card .body {
+  flex: 1 1 65%;
+  min-height: 0;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.project-card .title { font-size: 24px; font-weight: 600; margin: 0 0 4px; }
+.project-card .type { font-size: 17px; font-style: italic; color: var(--crema); margin: 0 0 10px; }
+.project-card .bio {
+  font-size: 18px;
+  color: var(--crema);
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+/* Pie de la card: íconos de tecnologías a la izquierda, estado a la derecha */
+.card-footer {
+  margin-top: auto;      /* lo empuja al fondo de la card */
+  padding-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tech-icons { display: flex; gap: 8px; }
+.tech-icons img { width: 26px; height: 26px; object-fit: contain; }
+
+/* Círculo de estado: verde = terminado, amarillo = sin terminar.
+   El borde crema hace que se vea bien sobre el fondo marrón de la card. */
+.status {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--crema);
+}
+.status-done { background: var(--verde); }
+.status-wip { background: var(--mostaza); }
+
+.link { color: var(--mostaza); text-decoration: underline; text-decoration-color: var(--marron); text-underline-offset: 3px; }
+.link:hover { text-decoration-color: var(--mostaza); }
+
+/* ==========================================================
+   SECCIÓN "Nosotros" — una card de perfil por persona
+   Estructura interna: .avatar (foto/iniciales) + nombre +
+   .social-links (un botón por red, con icono + etiqueta).
+   ========================================================== */
+.social-cards {
+  /*
+     - "justify-content" acá controla si el par de cards se pega a la
+       izquierda/derecha o se centra, pero solo se nota si las columnas
+       NO estiran para llenar el ancho. Con "1fr" siempre estiran.
+       Para poder moverlas, cambiá "minmax(276px, 1fr)" por un ancho
+       fijo, ej: grid-template-columns: repeat(2, 300px); y ahí sí
+       "justify-content: center | start | end | space-between" mueve
+       el bloque completo.
+     - Para mover UNA card en particular (ej. escalonarlas), usá
+       margin-top / transform en .social-card:nth-child(2). */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
+  gap: 31px;
+  margin-top: 8px;
+  max-width: 744px;   
+}
+
+.social-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 17px;          
+  padding: 41px 29px; 
+  border: 1px solid var(--marron);
+  background: var(--verde-oscuro);
+}
+
+.avatar {
+  width: 116px;   
+  height: 116px;  
+  border-radius: 50%;
+  border: 1px solid var(--marron);
+  background: var(--negro-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Mrs Saint Delafield", cursive;
+  font-size: 53px;  
+  color: var(--crema);
+  overflow: hidden;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.social-card h3 { margin: 0; font-size: 31px; font-weight: 500; } /* antes 26px */
+
+.social-links { display: flex; flex-direction: column; gap: 12px; width: 100%; } /* antes 10px */
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;          /* antes 12px */
+  padding: 12px 19px; /* antes 10px 16px */
+  border: 1px solid var(--marron);
+  color: var(--crema);
+  text-decoration: none;
+  font-size: 22px;    /* antes 18px (+20%) */
+  transition: background .2s ease, border-color .2s ease;
+}
+.social-link:hover { background: var(--marron); border-color: var(--crema); }
+.social-link .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--marron);
+  background: var(--negro-1);
+  object-fit: contain;  /* el logo entra completo, sin recortarse ni deformarse */
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+/* Educación, dentro de cada card de Nosotros */
+.social-card .education p { margin: 0; font-size: 17px; color: var(--crema); }
+
+/* Fila de íconos de habilidades. OJO: se llama "skills-block" /
+   "skills-list" (no "skills" a secas) para no chocar con la clase
+   .skills que ya usa el párrafo de Presentación. */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.skill-icon { width: 34px; height: 34px; object-fit: contain; }
+
+/* Subtítulos dentro de la card (Educación / Habilidades / Redes) */
+.social-card h4 {
+  margin: 18px 0 6px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--crema);
+}
+/* ==========================================================
+   SECCIÓN "CONTACTO"
+   ========================================================== */
+.copy-btn {
+  margin-top: 6px;
+  padding: 10px 20px;
+  border: 1px solid var(--crema);
+  background: transparent;
+  color: var(--crema);
+  font-size: 20px;       
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+/* Botón genérico (outline) y su variante "primary" (relleno),
+   usados por el formulario y el botón de Gmail. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--crema);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--crema);
+  font-family: inherit;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn:hover { background: var(--negro-3); }
+.btn-primary { background: var(--verde); color: var(--crema); border-color: var(--verde); }
+.btn-primary:hover { background: var(--marron); border-color: var(--marron); }
+
+/* Formulario de contacto */
+.contact-form { display: flex; flex-direction: column; gap: 18px; margin: 26px 0; max-width: 480px; }
+.contact-form label { display: flex; flex-direction: column; gap: 6px; font-size: 16px; color: var(--mostaza); }
+.contact-form input,
+.contact-form textarea {
+  font-family: inherit;
+  font-size: 18px;
+  color: var(--crema);
+  background: transparent;
+  border: 1px solid var(--marron);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--mostaza);
+  box-shadow: 0 0 0 3px var(--negro-3);
+}
+.contact-form .btn { align-self: flex-start; }
+
+/* Fila con las formas alternativas de escribirnos (copiar correo / Gmail) */
+.contact-alt { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }

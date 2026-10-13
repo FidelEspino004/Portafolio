@@ -1,32 +1,32 @@
 # Portafolio — Fidel & Serafín
 
-Portafolio de desarrollador armado como una SPA de una sola página, con 4 secciones navegables sin recargar: **Presentación, Trabajos, Redes y Contacto**.
+Portafolio de desarrollador armado como una SPA de una sola página, con 4 secciones navegables sin recargar: **Presentación, Trabajos, Nosotros y Contacto**.
 
 ## Estructura del proyecto dividido
 
 ```
 portafolio/
 ├── index.html
+├── html/
+│   └── proyectos.html
 ├── css/
-│   ├── variables.css      → colores y tema claro/oscuro
-│   ├── base.css           → reset, tipografía general, foco de teclado
-│   ├── layout.css         → topbar, grid Nav/Main, responsive
-│   └── components.css     → botón de tema, nav, paneles, tarjetas, links
+│   ├── style.css          → estilos generales: paleta de colores, variables, fuentes, base y componentes
+│   ├── index.css          → estructura del SPA: barra superior, grid Nav/Main y responsive
+│   └── proyectos.css      → estilos propios de la página de proyectos
 ├── js/
-│   ├── theme.js            → toggle de tema + localStorage
 │   ├── nav.js               → cambio de sección de la SPA
-│   ├── contact.js           → botón de copiar el correo
-│   └── main.js               → punto de entrada, importa los otros 3 módulos
+│   ├── contact.js           → botón de copiar el correo y formulario de contacto
+│   └── main.js               → punto de entrada, importa los otros 2 módulos
 ├── assets/
 │   ├── icons/
 │   └── images/
-└── README.md               → instrucciones para correrlo localmente
+└── README.md               → este archivo
 ```
 
 ## Decisiones de diseño vigentes
 
-- **Paleta:** escala de grises ("papel y tinta"), con variables CSS (`--paper`, `--ink`, `--graphite`, `--line`, `--hover`, `--panel`) que cambian según el tema.
-- **Tema claro/oscuro:** automático según el sistema operativo, o forzado con el botón de la esquina superior derecha. Se guarda en `localStorage` del navegador de cada visitante.
+- **Paleta:** definida en `css/style.css` (`--rojo`, `--rojo-variante`, `--azul`, `--cian`, `--mostaza`, `--crema`, `--negro`). Cada elemento usa directamente el color que quiera, sin variables intermedias: para cambiarlo se edita su propio bloque.
+- **Un solo tema:** fondo negro y texto crema. No hay botón para cambiar de tema.
 - **Tipografía:** `Mrs Saint Delafield` (caligráfica) solo para el nombre/logo de la barra superior; `Cormorant Garamond` (serif elegante) para todo el resto. Se eligió así porque una fuente caligráfica es ilegible en párrafos largos.
   - Todos los tamaños de fuente están escalados ~20% más grandes que la primera versión.
 - **Layout Nav/Main:** `display: grid` con `grid-template-columns: 25% 75%` — el Nav ocupa un cuarto del ancho y el Main el resto.
@@ -36,7 +36,6 @@ portafolio/
 ## Próximos pasos posibles
 
 - Añadir contenido real.
-- Definir la paleta de colores definitiva (por ahora es blanco/negro/gris).
 - Sumar imágenes o capturas reales de los proyectos en `assets/images/`.
 - Crear tarjetas para cada uno de los proyectos en Trabajos, las tarjetas redigiran a "Blog".
 - Crear 2 tarjetas para las redes de cada uno.

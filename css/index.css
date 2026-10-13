@@ -1,5 +1,9 @@
+/* Alto de la barra superior. El sidebar pegajoso y el grid dependen de este
+   valor, así que si lo cambiás acá se acomodan solos. */
+:root { --topbar-h: 100px; }
+
 /* ==========================================================
-   BARRA SUPERIOR (logo + botón de tema)
+   BARRA SUPERIOR (logo)
    ========================================================== */
 .topbar {
   position: sticky;
@@ -10,16 +14,16 @@
   justify-content: space-between;
   padding: 14px 24px;
   padding-top: calc(14px + env(safe-area-inset-top, 0px));
-  border-bottom: 1px solid var(--line);
-  background: var(--paper);
-  height: 100px;
+  border-bottom: 1px solid var(--marron);
+  background: var(--negro);
+  height: var(--topbar-h);
 }
 
 .mark {
   font-size: 38px;      
   line-height: 1;
   letter-spacing: .5px;
-  color: var(--ink);
+  color: var(--crema);
 }
 
 /* ==========================================================
@@ -29,19 +33,19 @@
   display: grid;
   grid-template-columns: 25% 75%;  /* Nav 25% / Main 75% */
   align-items: start;
-  min-height: calc(100% - 70px);
+  min-height: calc(100% - var(--topbar-h));
 }
 
 /* ----------------------------------------------------------
    NAV (columna izquierda del grid)
    No tiene borde derecho fijo separándolo del Main: ese
-   borde solo aparece en el botón seleccionado (components.css,
+   borde solo aparece en el botón seleccionado (style.css,
    regla .nav-btn.active).
    ---------------------------------------------------------- */
 .sidebar {
   padding: 28px 0;
   position: sticky;
-  top: 70px;
+  top: var(--topbar-h);   /* antes 70px: quedaba tapado por la barra superior de 100px */
   align-self: start;
 }
 
@@ -61,18 +65,19 @@
    convierte en una barra horizontal arriba del contenido.
    ========================================================== */
 @media (max-width: 860px) {
+  :root { --topbar-h: 64px; }   /* barra superior más baja: libera espacio para el contenido */
   .layout {
     grid-template-columns: 1fr;   /* una sola columna */
     grid-auto-rows: auto;
   }
   .sidebar {
     position: sticky;
-    top: 69px;
-    border-bottom: 1px solid var(--line);
+    top: var(--topbar-h);
+    border-bottom: 1px solid var(--marron);
     padding: 6px 4px;
     display: flex;
     overflow-x: auto;
-    background: var(--paper);
+    background: var(--negro);
   }
   .content { padding: 34px 22px 60px; }
   .mark { font-size: 30px; } 

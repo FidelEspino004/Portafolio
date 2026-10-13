@@ -9,18 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/variables.css">
+<!-- Tipografía alternativa (comentada por ahora). Para probarla, descomentá estas 3 líneas
+     y la línea "font-family" comentada en css/style.css. (Alcanza con esto o con el @import comentado en style.css.)
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Press+Start+2P&display=swap" rel="stylesheet">
+-->
+
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
   <header class="topbar">
     <span class="mark">Provincianos</span>
-    <button id="theme-toggle" aria-label="Cambiar tema">
-      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
-      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
-    </button>
   </header>
 
   <div class="layout">
@@ -33,11 +34,39 @@
 
     <main class="content" id="content">
 
+
       <section id="presentacion" class="panel active">
-        <h1>Fidel &amp; Serafín</h1>
+        <h1>¡Hola! Somos Provincianos</h1>
         <p class="role">Desarrolladores de software</p>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae explicabo ullam voluptatibus quia ab optio sit asperiores dolorum tenetur tempore placeat minima, sed voluptas dolore cumque ut corrupti. Voluptate, eius!</p>
-        <p class="skills">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga vitae quo porro, eligendi cum alias earum debitis, necessitatibus provident harum, eos magnam. Possimus, tempora. Fugit at nulla architecto ex accusantium.</p>
+
+        <p>
+          Somos Fidel y Serafín, dos desarrolladores web junior y amigos que
+          formamos Provincianos. Nos dedicamos al diseño y desarrollo de sitios
+          y aplicaciones web, desde landing pages y e-commerce hasta aplicaciones
+          de página única (SPA).
+          <br><br>
+          Provincianos nació de nuestras ganas de crecer profesionalmente en el
+          mundo de la programación. Venimos de un pueblo del interior de Buenos
+          Aires, que dejamos atrás para continuar nuestra formación académica y
+          perseguir nuestros objetivos.
+          <br><br>
+          Creemos que desarrollar software va mucho más allá de escribir código:
+          implica creatividad, atención al detalle, pensamiento crítico y un
+          compromiso constante con la mejora. Utilizamos las herramientas
+          disponibles, incluida la inteligencia artificial, para optimizar nuestro
+          trabajo, detectar errores y explorar nuevas soluciones. Sin embargo,
+          creemos que la tecnología debe ser un complemento de nuestro criterio,
+          no un reemplazo del aprendizaje. Entender cada decisión, resolver
+          problemas y aprender durante el proceso es lo que nos permite crear
+          soluciones más seguras, eficientes y escalables, mientras seguimos
+          creciendo como profesionales.
+          <br><br>
+          Te invitamos a conocer nuestros proyectos, descubrir cómo trabajamos
+          y contactarnos para que podamos darle forma a tu próxima idea.
+        </p>
+        <p class="skills">
+          Trabajamos con HTML5, CSS3, JavaScript y Bootstrap.
+        </p>
       </section>
 
       <section id="trabajos" class="panel wide">
@@ -49,8 +78,17 @@
           <a class="project-card" href="/html/proyectos.html">
             <div class="shot" aria-hidden="true"></div>
             <div class="body">
-              <h3 class="title">Proyecto Uno</h3>
-              <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio praesent libero, sit amet cursus nisl.</p>
+              <h3 class="title">Y2K Market</h3>
+              <p class="type">CMS</p>
+              <p class="bio">Proyecto de facultad en el que tuvimos que hacer una aplicación de autoservicio para una tienda de tecnología.</p>
+              <div class="card-footer">
+                <div class="tech-icons">
+                  <img src="assets/icons/html5_icon.png" alt="HTML5">
+                  <img src="assets/icons/css3_icon.png" alt="CSS3">
+                  <img src="assets/icons/JavaScript_icon.png" alt="JavaScript">
+                </div>
+                <span class="status status-done" role="img" aria-label="Proyecto terminado" title="Proyecto terminado"></span>
+              </div>
             </div>
           </a>
 
@@ -58,7 +96,16 @@
             <div class="shot" aria-hidden="true"></div>
             <div class="body">
               <h3 class="title">Proyecto Dos</h3>
+              <p class="type">Landing Page</p>
               <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus ante dapibus diam sed nisi nulla quis.</p>
+              <div class="card-footer">
+                <div class="tech-icons">
+                  <img src="assets/icons/html5_icon.png" alt="HTML5">
+                  <img src="assets/icons/css3_icon.png" alt="CSS3">
+                  <img src="assets/icons/JavaScript_icon.png" alt="JavaScript">
+                </div>
+                <span class="status status-wip" role="img" aria-label="Proyecto en desarrollo" title="Proyecto en desarrollo"></span>
+              </div>
             </div>
           </a>
 
@@ -66,7 +113,16 @@
             <div class="shot" aria-hidden="true"></div>
             <div class="body">
               <h3 class="title">Proyecto Tres</h3>
+              <p class="type">Blog</p>
               <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam libero tempore, cum soluta nobis est eligendi.</p>
+              <div class="card-footer">
+                <div class="tech-icons">
+                  <img src="assets/icons/html5_icon.png" alt="HTML5">
+                  <img src="assets/icons/css3_icon.png" alt="CSS3">
+                  <img src="assets/icons/Bootstrap_icon.png" alt="Bootstrap">
+                </div>
+                <span class="status status-done" role="img" aria-label="Proyecto terminado" title="Proyecto terminado"></span>
+              </div>
             </div>
           </a>
         </div>
